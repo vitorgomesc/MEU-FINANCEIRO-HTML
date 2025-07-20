@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Meu Financeiro</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dash-body">
+  <header>
+    <h1>Meu Financeiro</h1>
+    <button onclick="logout()">Sair</button>
+  </header>
+
+  <!-- Carteira Resumo -->
+  <section class="carteira-resumo">
+    <div>
+      <h3>Saldo Guardado</h3>
+      <p id="saldoGuardado">£0.00</p>
+    </div>
+    <div>
+      <h3>Guardando este mês</h3>
+      <p id="guardandoMes">£0.00</p>
+    </div>
+    <div>
+      <h3>Total Investido</h3>
+      <p id="totalInvestido">£0.00</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Seção de Lançamentos -->
+    <section class="add-lancamento">
+      <h2>Adicionar Lançamento</h2>
+      <input type="text" id="desc" placeholder="Descrição" />
+      <input type="number" id="valor" placeholder="Valor (£)" />
+      <select id="tipo">
+        <option value="ganho">Ganho</option>
+        <option value="despesa">Despesa</option>
+      </select>
+      <select id="responsavel">
+        <option value="vitor">Vitor</option>
+        <option value="laina">Laina</option>
+      </select>
+      <button onclick="adicionarLancamento()">Adicionar</button>
+    </section>
+
+    <section class="lista-lancamentos">
+      <h2>Lançamentos</h2>
+      <ul id="lista"></ul>
+    </section>
+
+    <section class="grafico-evolucao">
+      <h2>Evolução Mensal</h2>
+      <canvas id="grafico"></canvas>
+    </section>
+
+    <!-- Seção de Investimentos -->
+    <section class="investimentos">
+      <h2>Investimentos</h2>
+      <form id="formInvestimento" onsubmit="adicionarInvestimento(event)">
+        <input type="text" id="tipoInvestimento" placeholder="Tipo (ex: Ação, Fundo, Cripto)" required />
+        <input type="number" id="valorInvestimento" placeholder="Valor Investido (£)" step="0.01" required />
+        <input type="date" id="dataInvestimento" required />
+        <input type="number" id="rentabilidadeEsperada" placeholder="Rentabilidade Esperada (%)" step="0.01" required />
+        <button type="submit">Adicionar Investimento</button>
+      </form>
+
+      <ul id="listaInvestimentos"></ul>
+
+      <canvas id="graficoInvestimentos" style="max-width: 100%; margin-top: 20px;"></canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    window.onload = () => {
+      verificarLogin();
+      carregarLancamentos();
+      desenharGrafico();
+      carregarTudoInvestimentos();
+      atualizarCarteiraResumo();
+    };
+  </script>
+</body>
+</html>

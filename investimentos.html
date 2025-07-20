@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Meu Financeiro</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f0f0f0; }
+    #totais { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Meu Financeiro</h1>
+
+  <div id="totais">
+    <p>Saldo Guardado: <span id="saldo">£ 0.00</span></p>
+    <p>Total Investido: <span id="investido">£ 0.00</span></p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Valor (£)</th>
+        <th>Tipo</th>
+        <th>Pessoa</th>
+      </tr>
+    </thead>
+    <tbody id="lancamentos"></tbody>
+  </table>
+
+  <script>
+    async function carregarLancamentos() {
+      try {
+        const resp = await fetch('http://localhost:3000/');
+        const dados = await resp.json();
+
+        const tabela = document.getElementById('lancamentos');
+        const saldoSpan = document.getElementById('saldo');
+        const investidoSpan = document.getElementById('investido');
+
+        let saldoTotal = 0;
+        let totalInvestido = 0;
+
+        dados.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${item.Descricao || ''}</td>
+            <td>${Number(item.Valor).toFixed(2)}</td>
+            <td>${item.Tipo || ''}</td>
+            <td>${item.Pessoa || ''}</td>
+          `;
+          tabela.appendChild(tr);
+
+          // Calcular saldo
+          if (item.Tipo.toLowerCase() === 'ganho') {
+            saldoTotal += Number(item.Valor);
+          } else {
+            saldoTotal -= Number(item.Valor);
+          }
+
+          // Detectar se é investimento
+          if (item.Descricao.toLowerCase().includes('invest')) {
+            totalInvestido += Number(item.Valor);
+          }
+        });
+
+        saldoSpan.textContent = `£ ${saldoTotal.toFixed(2)}`;
+        investidoSpan.textContent = `£ ${totalInvestido.toFixed(2)}`;
+      } catch (err) {
+        console.error('Erro ao carregar dados:', err);
+      }
+    }
+
+    window.onload = carregarLancamentos;
+  </script>
+</body>
+</html>

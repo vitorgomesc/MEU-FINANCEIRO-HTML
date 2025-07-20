@@ -1,0 +1,233 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f2f5;
+  color: #333;
+}
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  width: 300px;
+  text-align: center;
+}
+
+.login-box h1 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  background: #4caf50;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background: #388e3c;
+}
+
+header {
+  background: #4caf50;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  background: #f44336;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header button:hover {
+  background: #c62828;
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Carteira Resumo */
+
+.carteira-resumo {
+  display: flex;
+  justify-content: space-around;
+  background: #e0f2f1;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 900px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.carteira-resumo div {
+  text-align: center;
+}
+
+.carteira-resumo h3 {
+  margin: 0 0 5px 0;
+  color: #00796b;
+}
+
+.carteira-resumo p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #004d40;
+  margin: 0;
+}
+
+/* Lançamentos */
+
+.add-lancamento input, .add-lancamento select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-lancamento button {
+  background: #2196f3;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-lancamento button:hover {
+  background: #1976d2;
+}
+
+.lista-lancamentos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-lancamentos li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.lista-lancamentos button {
+  background: #f44336;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.lista-lancamentos button:hover {
+  background: #c62828;
+}
+
+/* Gráfico evolução ocupa as duas colunas */
+.grafico-evolucao {
+  grid-column: 1 / -1;
+}
+
+/* Investimentos */
+
+.investimentos form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.investimentos form input {
+  flex: 1 1 150px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.investimentos form button {
+  background: #ff9800;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.investimentos form button:hover {
+  background: #ef6c00;
+}
+
+#listaInvestimentos {
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#listaInvestimentos li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#listaInvestimentos li button {
+  background: #f44336;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+#listaInvestimentos li button:hover {
+  background: #c62828;
+}
